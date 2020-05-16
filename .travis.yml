@@ -1,0 +1,14 @@
+dist: bionic
+
+env:
+  - IMAGE_NAME="webofmars/ci-skaffold"
+
+services:
+  - docker
+
+before_script:
+  - sudo apt-get install -y git
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+script:
+  - bash generator.sh
