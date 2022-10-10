@@ -8,12 +8,13 @@ USER 0
 RUN apk add --no-cache docker && \
     addgroup asdf docker
 
-# add make for supporting makefile builds
+# add make for supporting makefile usage in skaffold CI jobs
 RUN apk add --no-cache make
 
 # should run asdf as the dedicated user
 USER 1000
 
+RUN asdf plugin update --all
 ARG SKAFFOLD_VERSION=1.9.1
-RUN asdf install skaffold ${SKAFFOLD_VERSION}
-RUN asdf global skaffold ${SKAFFOLD_VERSION}
+RUN asdf install skaffold ${SKAFFOLD_VERSION} && \
+    asdf global skaffold ${SKAFFOLD_VERSION}
