@@ -16,11 +16,11 @@ dagger.#Plan & {
       read: contents: dagger.#FS
     }
     env: {
-      DOCKER_IMAGE: string
-      DOCKER_TAG: string
       DOCKER_REGISTRY: string
       DOCKER_USERNAME: string
       DOCKER_PASSWORD: dagger.#Secret
+      DOCKER_IMAGE: string
+      DOCKER_TAG?: string
     }
     network: "unix:///var/run/docker.sock": connect: dagger.#Socket
   }
