@@ -1,4 +1,5 @@
-FROM webofmars/asdf:v0.7.8
+ARG platform="linux/amd64"
+FROM --platform=${platform} webofmars/asdf:v0.8.1
 
 # install as root
 USER 0
