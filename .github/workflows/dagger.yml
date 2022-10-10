@@ -13,6 +13,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      DAGGER_CACHE_FROM: type=gha,scope=dagger-cache
+      DAGGER_CACHE_TO: type=gha,mode=max,scope=dagger-cache
     steps:
       - name: Checkout
         uses: actions/checkout@v3
