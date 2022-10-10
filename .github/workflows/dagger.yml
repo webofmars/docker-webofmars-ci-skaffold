@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
+      - master
       - main
   schedule:
     # 03:07 UTC on Tuesday and Friday
@@ -19,21 +20,9 @@ jobs:
       - name: Dagger
         uses: dagger/dagger-for-github@v3
         with:
-          cmds: do push
+          cmds: do generator
         env:
           DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           DOCKER_IMAGE: ${{ secrets.DOCKER_IMAGE }}
-          DOCKER_TAG: ${{ github.sha }}
-
-      - name: Dagger
-        uses: dagger/dagger-for-github@v3
-        with:
-          cmds: do push
-        env:
-          DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_IMAGE: ${{ secrets.DOCKER_IMAGE }}
-          DOCKER_TAG: latest
